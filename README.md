@@ -19,13 +19,15 @@ ln -s <this_repo_root/backend> vsi
 ## Usage
 ### Environment variables
 - VSI_DRIVER_PATH: the path to verisilicon sdk drivers
-- VIVANTE_SDK_PATH: the path to verisilicon sdk
-- TC_TOOLKITS_PATH: the path to verisilicon TensorCore toolkits 
+- TC_TOOLKITS_PATH: the path to verisilicon TensorCore toolkits
 - ZEN_COMPILER_PATH: the path to zen_compiler executable
 - CC: the C/C++ compiler used of backend, need use clang++ in vsi backend
 ``` python
+import torch
+import triton
+import vpex
 from triton.backends.vsi.driver import VSIDriver
-triton.runtime.driver.set_activate(VSIDriver())
+triton.runtime.driver.set_active(VSIDriver())
 # ... your triton kernel and other code
 ```
 

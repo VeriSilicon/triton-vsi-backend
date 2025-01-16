@@ -11,11 +11,11 @@ import subprocess
 import functools
 from pathlib import Path
 
-def  _get_zen_compiler_path(bin_name: str) -> str:
+def  _get_zen_compiler_path() -> str:
     path = os.getenv("ZEN_COMPILER_PATH", "")
     if path == "":
         raise Exception("ZEN_COMPILER_PATH is not set.")
-    return os.path.join(path, bin_name)
+    return path
 
 def _get_tc_toolkits_path() -> str:
     path = os.getenv("TC_TOOLKITS_PATH", "")
@@ -30,7 +30,7 @@ def _ttir_to_spv(ttir: str, metadata, option):
         tt_path = os.path.join(tmpdir, "tt.ttir")
         zen_spv_path = os.path.join(tmpdir, "zen.spv")
         Path(tt_path).write_text(str(ttir))
-        zen_compiler_path = _get_zen_compiler_path("zen-compiler")
+        zen_compiler_path = _get_zen_compiler_path()
 
         match = re.search(r"tt.func public\s+@(\w+)\(", Path(tt_path).read_text())
         if match:
@@ -53,7 +53,7 @@ def _ttir_to_spv(ttir: str, metadata, option):
             "--spirv-target-options=caps=GenericPointer,Kernel,Addresses,TensorCoreVSI,Vector32,Vector16,Int8,Float16,Int64 exts=SPV_KHR_storage_buffer_storage_class,SPV_VSI_TC_inst module=.*",
             tt_path,
             "-o",
-            zen_spv_path], env={"LD_LIBRARY_PATH": f"{_get_tc_toolkits_path()}"})
+            zen_spv_path], env={"LD_LIBRARY_PATH": f"$LD_LIBRARY_PATH:{_get_tc_toolkits_path()}"})
 
         if option.dump_standalone:
             if not os.path.exists(metadata["name"]):
