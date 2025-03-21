@@ -6,8 +6,7 @@
 #include <string.h>
 
 static bool oclAssert(cl_int code, const char *file, int line) {
-  if (code == CL_SUCCESS)
-    return true;
+  if (code == CL_SUCCESS) return true;
   const char *prefix = "Triton Error [OpenCL]";
   char err[1024] = {0};
   snprintf(err, sizeof(err), "%s code %d, %s:%d", prefix, code, file ,line);
