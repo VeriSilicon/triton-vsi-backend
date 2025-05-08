@@ -65,6 +65,8 @@ def has_triton() -> bool:
     # ...
 ```
 
+If your platform has CUDA devices, you need to set env var `CUDA_VISIBLE_DEVICES=""` to disable them, otherwise there will be conflict when running some Inductor passes.
+
 ### Dump standalone launcher for debug
 
 For single triton kernel, You can dump a C++ standalone launcher that is capable to run the compiled kernel without the triton python runtime.
