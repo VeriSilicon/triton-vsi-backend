@@ -119,20 +119,22 @@ inline version_t read_magic(std::istream &istream) {
 }
 
 const std::unordered_map<std::type_index, dtype_t> dtype_map = {
+    {std::type_index(typeid(bool)), {no_endian_char, 'b', sizeof(bool)}},
+    {std::type_index(typeid(char)), {no_endian_char, 'i', sizeof(char)}},
+    {std::type_index(typeid(int8_t)), {no_endian_char, 'i', sizeof(int8_t)}},
+    {std::type_index(typeid(int16_t)), {host_endian_char, 'i', sizeof(int16_t)}},
+    {std::type_index(typeid(int32_t)), {host_endian_char, 'i', sizeof(int32_t)}},
+    {std::type_index(typeid(int64_t)), {host_endian_char, 'i', sizeof(int64_t)}},
+    {std::type_index(typeid(uint8_t)), {no_endian_char, 'u', sizeof(uint8_t)}},
+    {std::type_index(typeid(uint16_t)), {host_endian_char, 'u', sizeof(uint16_t)}},
+    {std::type_index(typeid(uint32_t)), {host_endian_char, 'u', sizeof(uint32_t)}},
+    {std::type_index(typeid(uint64_t)), {host_endian_char, 'u', sizeof(uint64_t)}},
+#if defined (__clang__)
+    {std::type_index(typeid(__fp16)), {host_endian_char, 'f', sizeof(__fp16)}},
+#endif
     {std::type_index(typeid(float)), {host_endian_char, 'f', sizeof(float)}},
     {std::type_index(typeid(double)), {host_endian_char, 'f', sizeof(double)}},
     {std::type_index(typeid(long double)), {host_endian_char, 'f', sizeof(long double)}},
-    {std::type_index(typeid(char)), {no_endian_char, 'i', sizeof(char)}},
-    {std::type_index(typeid(signed char)), {no_endian_char, 'i', sizeof(signed char)}},
-    {std::type_index(typeid(short)), {host_endian_char, 'i', sizeof(short)}},
-    {std::type_index(typeid(int)), {host_endian_char, 'i', sizeof(int)}},
-    {std::type_index(typeid(long)), {host_endian_char, 'i', sizeof(long)}},
-    {std::type_index(typeid(long long)), {host_endian_char, 'i', sizeof(long long)}},
-    {std::type_index(typeid(unsigned char)), {no_endian_char, 'u', sizeof(unsigned char)}},
-    {std::type_index(typeid(unsigned short)), {host_endian_char, 'u', sizeof(unsigned short)}},
-    {std::type_index(typeid(unsigned int)), {host_endian_char, 'u', sizeof(unsigned int)}},
-    {std::type_index(typeid(unsigned long)), {host_endian_char, 'u', sizeof(unsigned long)}},
-    {std::type_index(typeid(unsigned long long)), {host_endian_char, 'u', sizeof(unsigned long long)}},
     {std::type_index(typeid(std::complex<float>)), {host_endian_char, 'c', sizeof(std::complex<float>)}},
     {std::type_index(typeid(std::complex<double>)), {host_endian_char, 'c', sizeof(std::complex<double>)}},
     {std::type_index(typeid(std::complex<long double>)), {host_endian_char, 'c', sizeof(std::complex<long double>)}}};

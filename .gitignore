@@ -1,0 +1,14 @@
+build/
+lib/
+bin/
+dist/
+*.whl
+*.egg-info/
+*.o
+*.so
+*.so.*
+
+# Exclude cache and temp files.
+.cache
+__pycache__
+*.pyc
