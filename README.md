@@ -7,8 +7,8 @@ Triton backend plugin for VeriSilicon (vsi) GPGPU/NPU device.
 ### Requirements
 
 1. Install LLVM and Clang toolchain, version `17` is recommended. See [LLVM Debian/Ubuntu packages](https://apt.llvm.org).
-2. Install [VPEX](https://github.com/VeriSilicon/VPEX) PyTorch backend for `vsi` device.
-3. Get prebuilt SDK from this repository.
+2. Install [VPEX](https://pypi.org/project/vpex) PyTorch backend with `pip3 install vpex`.
+3. Download prebuilt vsi driver SDK from this repository.
 
 ### Build wheel
 
