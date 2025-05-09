@@ -1,3 +1,7 @@
+# Exclude VSCode configs.
+.vscode/
+
+# Exclude build artifacts
 build/
 lib/
 bin/
@@ -9,6 +13,11 @@ dist/
 *.so.*
 
 # Exclude cache and temp files.
-.cache
-__pycache__
+.cache/
+.triton/
+__pycache__/
 *.pyc
+torch_compile_debug/
+
+# Exclude local env file.
+*.env
