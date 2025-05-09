@@ -1,0 +1,41 @@
+[project]
+name = "triton-vsi-backend"
+authors = [{name = "VeriSilicon"}]
+description = "Triton backend plugin for VeriSilicon GPGPU/NPU device"
+keywords = ["triton", "compiler", "deep-learning"]
+license = {file = "LICENSE"}
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "triton>=3.3.0",
+]
+dynamic = ["version"]
+
+[project.urls]
+Repository = "https://github.com/VeriSilicon/triton-vsi-backend"
+
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = [
+  "setuptools>=66",
+  "packaging>=23",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"triton_vsi_backend.backend" = [
+  "name.conf",
+  "driver.c",
+  "include/*.h",
+  "include/*.hpp",
+  "lib/*.so",
+  "bin/zen-compiler",
+]
+
+[tool.setuptools.dynamic]
+version = {file = "version.txt"}
+
+[tool.yapf]
+based_on_style = "google"
